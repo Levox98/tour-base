@@ -52,6 +52,9 @@ android {
 }
 
 dependencies {
+
+    implementation(project(":core-ui"))
+
     implementation(platform(Dependencies.Compose.bom))
 
     implementation(Dependencies.AndroidX.core)

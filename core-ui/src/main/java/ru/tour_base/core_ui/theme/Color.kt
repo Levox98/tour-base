@@ -1,4 +1,4 @@
-package ru.tour_base.ui.theme
+package ru.tour_base.core_ui.theme
 
 import androidx.compose.ui.graphics.Color
 
