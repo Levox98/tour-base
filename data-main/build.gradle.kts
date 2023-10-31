@@ -1,14 +1,16 @@
 plugins {
     id("com.android.library")
-    id("org.jetbrains.kotlin.android")
+    id("dagger.hilt.android.plugin")
+    kotlin("android")
+    kotlin("kapt")
 }
 
 android {
     namespace = "ru.tour_base.data_main"
-    compileSdk = 33
+    compileSdk = Config.compileSdk
 
     defaultConfig {
-        minSdk = 24
+        minSdk = Config.minSdk
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -24,20 +26,25 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = Config.sourceCompatibility
+        targetCompatibility = Config.targetCompatibility
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = Config.jvmTarget
     }
 }
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.10.0")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    implementation(Dependencies.AndroidX.core)
+
+    kapt(Dependencies.Hilt.kapt)
+    implementation(Dependencies.Hilt.hilt)
+
+    implementation(Dependencies.Retrofit.retrofit)
+    implementation(Dependencies.Retrofit.gsonConverter)
+
+    api(Dependencies.Room.api)
+    kapt(Dependencies.Room.kapt)
+    implementation(Dependencies.Room.room)
 }
