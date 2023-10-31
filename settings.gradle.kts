@@ -15,4 +15,9 @@ dependencyResolutionManagement {
 
 rootProject.name = "Tour base(test task)"
 include(":app")
- 
+include(":core-network")
+include(":core-ui")
+include(":data-main")
+include(":feature-main")
+include(":feature-blog")
+include(":core")
