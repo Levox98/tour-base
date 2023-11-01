@@ -36,6 +36,8 @@ android {
 
 dependencies {
 
+    implementation(project(":data-main"))
+
     implementation(Dependencies.AndroidX.core)
     implementation(Dependencies.Kotlin.collections)
 

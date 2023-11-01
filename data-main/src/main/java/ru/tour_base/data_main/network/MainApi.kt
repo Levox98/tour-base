@@ -9,7 +9,7 @@ import javax.inject.Singleton
 
 @Singleton
 class MainApi @Inject constructor(
-    val mainApiService: MainApiService
+    private val mainApiService: MainApiService
 ) : BaseApi() {
 
     suspend fun getMainContent(): Either<MainContentApiEntity> =
