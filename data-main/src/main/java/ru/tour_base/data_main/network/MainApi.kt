@@ -2,7 +2,7 @@ package ru.tour_base.data_main.network
 
 import ru.tour_base.core.Either
 import ru.tour_base.core_network.BaseApi
-import ru.tour_base.data_main.network.entity.blog.BlogEntryApiEntity
+import ru.tour_base.data_main.network.entity.blog.BlogContentBlockApiEntity
 import ru.tour_base.data_main.network.entity.main.MainContentApiEntity
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -19,10 +19,10 @@ class MainApi @Inject constructor(
             mapper = { it }
         )
 
-    suspend fun getBlogEntry(entryUrl: String): Either<BlogEntryApiEntity> =
+    suspend fun getBlogContent(contentUrl: String): Either<BlogContentBlockApiEntity> =
         doRequest(
             tag = "GET_BLOG_ENTRY",
-            request = { mainApiService.getBlogContent(entryUrl) },
+            request = { mainApiService.getBlogContent(contentUrl) },
             mapper = { it }
         )
 }
