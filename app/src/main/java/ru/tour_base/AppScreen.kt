@@ -1,5 +1,6 @@
 package ru.tour_base
 
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -20,7 +21,7 @@ fun AppScreen() {
         "No ViewModelStoreOwner was provided via LocalViewModelStoreOwner"
     }
 
-    AppTheme {
+    AppTheme(darkTheme = isSystemInDarkTheme()) {
         Surface(
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
