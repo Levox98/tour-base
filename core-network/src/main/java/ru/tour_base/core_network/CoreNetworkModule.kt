@@ -30,7 +30,7 @@ object CoreNetworkModule {
     }
 
     @Provides
-    fun provideGsonConverterFactory() =
+    fun provideGsonConverterFactory(): GsonConverterFactory =
         GsonConverterFactory.create()
 
     @Provides

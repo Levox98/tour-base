@@ -53,7 +53,13 @@ android {
 
 dependencies {
 
+    implementation(project(":core"))
+    implementation(project(":core-navigation"))
+    implementation(project(":core-network"))
     implementation(project(":core-ui"))
+    implementation(project(":data-main"))
+    implementation(project(":feature-blog"))
+    implementation(project(":feature-main"))
 
     implementation(platform(Dependencies.Compose.bom))
 

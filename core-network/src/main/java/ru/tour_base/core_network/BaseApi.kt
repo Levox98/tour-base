@@ -16,22 +16,20 @@ abstract class BaseApi {
             val response = request()
             if (response.isSuccessful) {
                 val result = response.body() as ApiResponse
-                if (result.error == null && result.success) {
+                if (result.success) {
                     Either.success(mapper(response.body()))
                 } else {
-                    if (result.error != null) {
-                        Either.error(
-                            AppError.error(result.error?.code?.toInt() ?: -1, result.error?.message ?: "")
-                        )
-                    } else {
-                        Either.error(AppError.Unknown("Unknown error"))
-                    }
+                    Either.error(
+                        result.error?.code?.toInt() ?: -1,
+                        result.error?.status ?: "",
+                        result.error?.message ?: ""
+                    )
                 }
             } else {
                 Either.error(AppError.Unknown("Response unsuccessful"))
             }
         } catch (e: Exception) {
-            Log.e("API_ERROR | $tag", "${e.message}")
+            Log.e("API_ERROR | $tag", "${e.cause} | ${e.message}")
             Either.error(AppError.Unknown(e.message ?: ""))
         }
     }

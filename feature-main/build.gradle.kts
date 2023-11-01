@@ -32,10 +32,18 @@ android {
     kotlinOptions {
         jvmTarget = Config.jvmTarget
     }
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = Dependencies.Compose.compilerVersion
+    }
 }
 
 dependencies {
 
+    implementation(project(":core"))
+    implementation(project(":core-navigation"))
     implementation(project(":data-main"))
 
     implementation(Dependencies.AndroidX.core)
