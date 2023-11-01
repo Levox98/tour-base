@@ -1,14 +1,16 @@
 package ru.tour_base.feature_main.ui
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.itemsIndexed
+import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -18,6 +20,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import ru.tour_base.feature_main.model.MainScreenViewModel
+import ru.tour_base.feature_main.ui.components.BlogCard
 
 @Composable
 fun MainScreen(vm: MainScreenViewModel) {
@@ -25,7 +28,7 @@ fun MainScreen(vm: MainScreenViewModel) {
     val mainContent by vm.mainContent.collectAsState(initial = null)
     val blogElements by vm.blogElements.collectAsState(initial = null)
 
-    val listState = rememberLazyListState()
+    val gridState = rememberLazyGridState()
 
     Box(modifier = Modifier.fillMaxSize()) {
         Scaffold(
@@ -43,21 +46,32 @@ fun MainScreen(vm: MainScreenViewModel) {
                 }
             }
         ) { paddingValues ->
-            LazyColumn(
+
+            LazyVerticalGrid(
                 modifier = Modifier.padding(paddingValues),
-                state = listState,
+                state = gridState,
+                columns = GridCells.Fixed(2),
+                contentPadding = PaddingValues(horizontal = 16.dp)
             ) {
 
                 blogElements?.let { list ->
                     itemsIndexed(
                         items = list,
                         key = { _, item -> item.id }
-                    ) { _, item ->
-                        Row(
-                            modifier = Modifier.padding(20.dp)
-                        ) {
-                            Text(text = item.title)
-                        }
+                    ) { index, item ->
+                        BlogCard(
+                            modifier = Modifier
+                                .padding(bottom = 8.dp)
+                                .then(
+                                    when {
+                                        index % 2 == 0 -> Modifier.padding(end = 4.dp)
+                                        else -> Modifier.padding(start = 4.dp)
+                                    }
+                                ),
+                            imageUrl = item.image.md,
+                            blogTitle = item.title,
+                            blogSubtitle = item.subtitle
+                        )
                     }
                 }
             }

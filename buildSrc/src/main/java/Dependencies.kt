@@ -47,9 +47,9 @@ object Dependencies {
     }
 
     object Picasso {
-        private const val version = "2.8"
+        private const val version = "3.0.0-alpha05"
 
-        const val picasso = "com.squareup.picasso:picasso:$version"
+        const val picasso = "com.squareup.picasso3:picasso-compose:$version"
     }
 
     object Lifecycle {

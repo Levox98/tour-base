@@ -44,6 +44,7 @@ dependencies {
 
     implementation(project(":core"))
     implementation(project(":core-navigation"))
+    implementation(project(":core-ui"))
     implementation(project(":data-main"))
 
     implementation(Dependencies.AndroidX.core)
@@ -61,4 +62,6 @@ dependencies {
 
     implementation(Dependencies.Navigation.navigation)
     implementation(Dependencies.Navigation.hilt)
+
+    implementation(Dependencies.Picasso.picasso)
 }
