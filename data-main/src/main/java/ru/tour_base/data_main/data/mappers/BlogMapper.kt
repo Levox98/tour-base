@@ -1,0 +1,18 @@
+package ru.tour_base.data_main.data.mappers
+
+import ru.tour_base.data_main.domain.entity.blog.BlogEntry
+import ru.tour_base.data_main.domain.entity.blog.BlogImage
+import ru.tour_base.data_main.network.entity.blog.BlogEntryApiEntity
+import ru.tour_base.data_main.network.entity.blog.BlogImageApiEntity
+
+fun BlogEntryApiEntity.toDomain() = BlogEntry(
+    id = data.id,
+    date = data.date,
+    url = data.url,
+    title = data.title,
+    subtitle = data.subtitle,
+    imageList = data.image.toDomain(),
+    content = data.content
+)
+
+private fun BlogImageApiEntity.toDomain() = BlogImage(sm, md, lg)
