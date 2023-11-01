@@ -12,14 +12,15 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.TourBasetestTask"
+        android:theme="@style/Theme.TourBase"
         android:name=".TourBaseApp"
-        tools:targetApi="31">
+        android:windowSoftInputMode="adjustResize"
+        tools:targetApi="34">
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.TourBasetestTask">
+            android:theme="@style/Theme.TourBase">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

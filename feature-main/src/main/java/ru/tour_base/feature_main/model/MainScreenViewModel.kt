@@ -1,5 +1,6 @@
 package ru.tour_base.feature_main.model
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -32,6 +33,8 @@ class MainScreenViewModel @Inject constructor(
                 content.isLoading() -> {  }
                 content.isSuccess() -> {
                     _mainContent.value = content.data
+
+                    Log.d("main_content_parse", "${_mainContent.value?.content?.map { it.toString() }}")
                 }
             }
         }
