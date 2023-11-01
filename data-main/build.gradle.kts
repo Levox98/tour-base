@@ -36,6 +36,9 @@ android {
 
 dependencies {
 
+    implementation(project(":core"))
+    implementation(project(":core-network"))
+
     implementation(Dependencies.AndroidX.core)
 
     kapt(Dependencies.Hilt.kapt)

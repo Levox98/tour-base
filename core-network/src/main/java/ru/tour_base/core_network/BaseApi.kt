@@ -15,11 +15,17 @@ abstract class BaseApi {
         return try {
             val response = request()
             if (response.isSuccessful) {
-                val result = response.body()
-                if (result != null) {
+                val result = response.body() as ApiResponse
+                if (result.error == null && result.success) {
                     Either.success(mapper(response.body()))
                 } else {
-                    Either.error(AppError.Unknown("Unknown error"))
+                    if (result.error != null) {
+                        Either.error(
+                            AppError.error(result.error?.code?.toInt() ?: -1, result.error?.message ?: "")
+                        )
+                    } else {
+                        Either.error(AppError.Unknown("Unknown error"))
+                    }
                 }
             } else {
                 Either.error(AppError.Unknown("Response unsuccessful"))
