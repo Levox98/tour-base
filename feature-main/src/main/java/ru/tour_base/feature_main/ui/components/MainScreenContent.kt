@@ -60,7 +60,7 @@ internal fun MainScreenContent(
                     imageUrl = item.image.md,
                     blogTitle = item.title,
                     blogSubtitle = item.subtitle,
-                    onClick = remember {
+                    onClick = remember(item) {
                         {
                             onBlogElementClick(item.id)
                         }

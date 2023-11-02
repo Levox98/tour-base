@@ -30,6 +30,7 @@ internal fun BlogScreenContent(
     blogEntry: BlogEntry?
 ) {
     val context = LocalContext.current
+    val picasso = Picasso.Builder(context).build()
 
     blogEntry?.let { entry ->
         LazyColumn(
@@ -37,7 +38,6 @@ internal fun BlogScreenContent(
             state = listState
         ) {
             item(entry.imageList.lg) {
-                val picasso = Picasso.Builder(context).build()
 
                 val painter = picasso.rememberPainter(key = entry.imageList.lg) {
                     it.load(entry.imageList.lg)
