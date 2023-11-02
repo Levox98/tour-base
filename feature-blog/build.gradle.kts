@@ -65,4 +65,5 @@ dependencies {
     implementation(Dependencies.Navigation.hilt)
 
     implementation(Dependencies.Picasso.picasso)
+    implementation(Dependencies.Util.markdown)
 }

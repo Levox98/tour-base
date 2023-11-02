@@ -1,7 +1,6 @@
 package ru.tour_base.feature_main.ui.components
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Column
@@ -21,7 +20,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.squareup.picasso3.Picasso
 import com.squareup.picasso3.compose.rememberPainter
-import ru.tour_base.core_ui.theme.Gray
 
 @Composable
 internal fun BlogCard(
@@ -54,7 +52,8 @@ internal fun BlogCard(
             Image(
                 modifier = Modifier
                     .clip(MaterialTheme.shapes.small)
-                    .border(1.dp, Gray, MaterialTheme.shapes.small),
+//                    .border(1.dp, MaterialTheme.colorScheme.secondary, MaterialTheme.shapes.small)
+                ,
                 painter = painter,
                 contentDescription = null
             )

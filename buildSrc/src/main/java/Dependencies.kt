@@ -92,4 +92,10 @@ object Dependencies {
         const val activityCompose = "androidx.activity:activity-compose:$activityComposeVersion"
         const val lifecycleViewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleViewmodelVersion"
     }
+
+    object Util {
+        private const val markdownVersion = "0.3.6"
+
+        const val markdown = "com.github.jeziellago:compose-markdown:$markdownVersion"
+    }
 }

@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.requiredHeightIn
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
@@ -18,6 +17,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.ripple.rememberRipple
+import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -35,9 +35,9 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.squareup.picasso3.Picasso
 import com.squareup.picasso3.compose.rememberPainter
+import dev.jeziellago.compose.markdowntext.MarkdownText
 import ru.tour_base.core.toDate
 import ru.tour_base.core.toHumanString
-import ru.tour_base.core_ui.theme.Gray
 import ru.tour_base.data_main.domain.entity.blog.BlogEntry
 import ru.tour_base.feature_blog.model.BlogEntryScreenViewModel
 
@@ -107,7 +107,8 @@ private fun BlogScreenContent(
                 }
 
                 Image(
-                    modifier = Modifier.requiredHeightIn(min = 100.dp),
+                    modifier = Modifier
+                        .padding(bottom = 16.dp),
                     alignment = Alignment.TopCenter,
                     contentScale = ContentScale.Fit,
                     painter = painter,
@@ -117,37 +118,52 @@ private fun BlogScreenContent(
 
             item(entry.date) {
                 Text(
-                    modifier = Modifier,
+                    modifier = Modifier
+                        .padding(horizontal = 16.dp),
                     text = entry.date.toDate()?.toHumanString() ?: "",
                     style = MaterialTheme.typography.labelSmall,
-                    color = Gray
+                    color = MaterialTheme.colorScheme.secondary
                 )
             }
 
             item(entry.title) {
                 Text(
-                    modifier = Modifier,
+                    modifier = Modifier
+                        .padding(horizontal = 16.dp)
+                        .padding(bottom = 16.dp),
                     text = entry.title,
                     style = MaterialTheme.typography.headlineMedium.copy(fontWeight = FontWeight.Bold),
-                    color = MaterialTheme.colorScheme.secondary
+                    color = MaterialTheme.colorScheme.onPrimary
+                )
+            }
+
+            item {
+                Divider(
+                    modifier = Modifier
+                        .padding(horizontal = 16.dp)
+                        .padding(bottom = 16.dp)
                 )
             }
 
             item(entry.subtitle) {
-                Text(
-                    modifier = Modifier,
-                    text = entry.subtitle,
+                MarkdownText(
+                    modifier = Modifier
+                        .padding(horizontal = 16.dp)
+                        .padding(bottom = 16.dp),
+                    markdown = entry.subtitle,
                     style = MaterialTheme.typography.headlineSmall,
-                    color = MaterialTheme.colorScheme.secondary
+                    color = MaterialTheme.colorScheme.onPrimary
                 )
             }
 
             item(entry.content) {
-                Text(
-                    modifier = Modifier,
-                    text = entry.content,
+                MarkdownText(
+                    modifier = Modifier
+                        .padding(horizontal = 16.dp),
+                    markdown = entry.content,
                     style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.secondary
+                    color = MaterialTheme.colorScheme.onPrimary,
+                    linkColor = MaterialTheme.colorScheme.onPrimary
                 )
             }
         }
@@ -175,7 +191,7 @@ private fun BlogBackButton(
             modifier = Modifier.padding(10.dp),
             imageVector = Icons.Default.ArrowBack,
             contentDescription = null,
-            tint = MaterialTheme.colorScheme.secondary
+            tint = MaterialTheme.colorScheme.onPrimary
         )
     }
 }

@@ -34,7 +34,6 @@ import androidx.navigation.NavHostController
 import ru.tour_base.core_navigation.BlogNavScreen
 import ru.tour_base.core_ui.R
 import ru.tour_base.core_ui.theme.Blue
-import ru.tour_base.core_ui.theme.Gray
 import ru.tour_base.feature_main.model.MainScreenViewModel
 import ru.tour_base.feature_main.ui.components.BlogCard
 
@@ -57,7 +56,7 @@ fun MainScreen(vm: MainScreenViewModel, navHostController: NavHostController) {
                         modifier = Modifier.padding(16.dp),
                         text = "Главная",
                         style = MaterialTheme.typography.headlineSmall,
-                        color = MaterialTheme.colorScheme.secondary
+                        color = MaterialTheme.colorScheme.onPrimary
                     )
                 }
             },
@@ -155,7 +154,7 @@ fun LazyGridScope.header(
 private fun BottomNavItem(
     iconId: Int,
     text: String,
-    tint: Color = Gray
+    tint: Color = MaterialTheme.colorScheme.secondary
 ) {
     Column(
         verticalArrangement = Arrangement.Center,
