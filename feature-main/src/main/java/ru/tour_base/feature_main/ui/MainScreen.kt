@@ -8,6 +8,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.GridItemSpan
+import androidx.compose.foundation.lazy.grid.LazyGridItemScope
+import androidx.compose.foundation.lazy.grid.LazyGridScope
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
@@ -54,6 +57,16 @@ fun MainScreen(vm: MainScreenViewModel) {
                 contentPadding = PaddingValues(horizontal = 16.dp)
             ) {
 
+                mainContent?.content?.firstOrNull { it.template.objectName == "blog" }?.let {
+                    header {
+                        Text(
+                            modifier = Modifier.fillMaxWidth().padding(bottom = 8.dp),
+                            text = it.title,
+                            style = MaterialTheme.typography.headlineMedium
+                        )
+                    }
+                }
+
                 blogElements?.let { list ->
                     itemsIndexed(
                         items = list,
@@ -77,4 +90,10 @@ fun MainScreen(vm: MainScreenViewModel) {
             }
         }
     }
+}
+
+fun LazyGridScope.header(
+    content: @Composable LazyGridItemScope.() -> Unit
+) {
+    item(span = { GridItemSpan(this.maxLineSpan) }, content = content)
 }
