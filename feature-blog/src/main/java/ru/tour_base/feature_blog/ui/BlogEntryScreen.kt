@@ -8,8 +8,8 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -74,7 +74,6 @@ fun BlogEntryScreen(
 
         BlogBackButton(
             modifier = Modifier
-                .statusBarsPadding()
                 .padding(top = 44.dp, start = 20.dp),
             onClick = remember {
                 {
@@ -159,6 +158,7 @@ private fun BlogScreenContent(
             item(entry.content) {
                 MarkdownText(
                     modifier = Modifier
+                        .navigationBarsPadding()
                         .padding(horizontal = 16.dp),
                     markdown = entry.content,
                     style = MaterialTheme.typography.bodyMedium,
