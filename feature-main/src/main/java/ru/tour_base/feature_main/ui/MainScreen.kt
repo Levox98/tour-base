@@ -20,13 +20,16 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import ru.tour_base.core_navigation.BlogNavScreen
 import ru.tour_base.feature_main.model.MainScreenViewModel
 import ru.tour_base.feature_main.ui.components.BlogCard
 
 @Composable
-fun MainScreen(vm: MainScreenViewModel) {
+fun MainScreen(vm: MainScreenViewModel, navHostController: NavHostController) {
 
     val mainContent by vm.mainContent.collectAsState(initial = null)
     val blogElements by vm.blogElements.collectAsState(initial = null)
@@ -83,7 +86,12 @@ fun MainScreen(vm: MainScreenViewModel) {
                                 ),
                             imageUrl = item.image.md,
                             blogTitle = item.title,
-                            blogSubtitle = item.subtitle
+                            blogSubtitle = item.subtitle,
+                            onClick = remember {
+                                {
+                                    navHostController.navigate(BlogNavScreen.Blog.routeToBlog(item.id))
+                                }
+                            }
                         )
                     }
                 }

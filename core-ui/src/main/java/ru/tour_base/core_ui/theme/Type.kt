@@ -20,6 +20,13 @@ val h3 = TextStyle(
     lineHeight = 24.sp,
 )
 
+val body = TextStyle(
+    fontFamily = FontFamily.Default,
+    fontWeight = FontWeight.Normal,
+    fontSize = 16.sp,
+    lineHeight = 24.sp
+)
+
 val caption = TextStyle(
     fontFamily = FontFamily.Default,
     fontWeight = FontWeight.Normal,
@@ -30,5 +37,6 @@ val caption = TextStyle(
 val Typography = Typography(
     headlineMedium = h2,
     headlineSmall = h3,
+    bodyMedium = body,
     labelSmall = caption
 )

@@ -11,12 +11,13 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import ru.tour_base.core_navigation.MainNavScreen
 import ru.tour_base.core_ui.theme.AppTheme
+import ru.tour_base.feature_blog.addBlog
 import ru.tour_base.feature_main.addMain
 
 @Composable
 fun AppScreen() {
 
-    val navController = rememberNavController()
+    val navHostController = rememberNavController()
     val viewModelStoreOwner = checkNotNull(LocalViewModelStoreOwner.current) {
         "No ViewModelStoreOwner was provided via LocalViewModelStoreOwner"
     }
@@ -27,10 +28,11 @@ fun AppScreen() {
             color = MaterialTheme.colorScheme.background
         ) {
             NavHost(
-                navController = navController,
+                navController = navHostController,
                 startDestination = MainNavScreen.Root.route
             ) {
-                addMain(viewModelStoreOwner)
+                addMain(viewModelStoreOwner, navHostController)
+                addBlog(viewModelStoreOwner, navHostController)
             }
         }
     }

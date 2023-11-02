@@ -32,9 +32,21 @@ android {
     kotlinOptions {
         jvmTarget = Config.jvmTarget
     }
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = Dependencies.Compose.compilerVersion
+    }
 }
 
 dependencies {
+
+    implementation(project(":core"))
+    implementation(project(":core-navigation"))
+    implementation(project(":core-network"))
+    implementation(project(":core-ui"))
+    implementation(project(":data-main"))
 
     implementation(Dependencies.AndroidX.core)
     implementation(Dependencies.Kotlin.collections)
@@ -51,4 +63,6 @@ dependencies {
 
     implementation(Dependencies.Navigation.navigation)
     implementation(Dependencies.Navigation.hilt)
+
+    implementation(Dependencies.Picasso.picasso)
 }
