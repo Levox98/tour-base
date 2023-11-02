@@ -35,6 +35,8 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.squareup.picasso3.Picasso
 import com.squareup.picasso3.compose.rememberPainter
+import ru.tour_base.core.toDate
+import ru.tour_base.core.toHumanString
 import ru.tour_base.core_ui.theme.Gray
 import ru.tour_base.data_main.domain.entity.blog.BlogEntry
 import ru.tour_base.feature_blog.model.BlogEntryScreenViewModel
@@ -116,7 +118,7 @@ private fun BlogScreenContent(
             item(entry.date) {
                 Text(
                     modifier = Modifier,
-                    text = entry.date,
+                    text = entry.date.toDate()?.toHumanString() ?: "",
                     style = MaterialTheme.typography.labelSmall,
                     color = Gray
                 )
