@@ -1,25 +1,19 @@
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     id("dagger.hilt.android.plugin")
     kotlin("android")
     kotlin("kapt")
 }
 
 android {
-    namespace = Config.packageName
+    namespace = "ru.tour_base.feature_blog"
     compileSdk = Config.compileSdk
 
     defaultConfig {
-        applicationId = Config.packageName
         minSdk = Config.minSdk
-        targetSdk = Config.targetSdk
-        versionCode = Config.versionCode
-        versionName = Config.versionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables {
-            useSupportLibrary = true
-        }
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -44,11 +38,6 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = Dependencies.Compose.compilerVersion
     }
-    packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
-    }
 }
 
 dependencies {
@@ -58,21 +47,23 @@ dependencies {
     implementation(project(":core-network"))
     implementation(project(":core-ui"))
     implementation(project(":data-main"))
-    implementation(project(":feature-blog"))
-    implementation(project(":feature-main"))
-
-    implementation(platform(Dependencies.Compose.bom))
 
     implementation(Dependencies.AndroidX.core)
-    implementation(Dependencies.Lifecycle.lifecycleRuntime)
-    implementation(Dependencies.Lifecycle.activityCompose)
-    implementation(Dependencies.Lifecycle.activity)
-
-    implementation(Dependencies.Compose.ui)
-    implementation(Dependencies.Compose.material3)
+    implementation(Dependencies.Kotlin.collections)
 
     kapt(Dependencies.Hilt.kapt)
     implementation(Dependencies.Hilt.hilt)
 
+    implementation(platform(Dependencies.Compose.bom))
+    implementation(Dependencies.Compose.ui)
+    implementation(Dependencies.Compose.material3)
+    implementation(Dependencies.Compose.iconsExtended)
+
+    implementation(Dependencies.Lifecycle.lifecycleViewmodel)
+
     implementation(Dependencies.Navigation.navigation)
+    implementation(Dependencies.Navigation.hilt)
+
+    implementation(Dependencies.Picasso.picasso)
+    implementation(Dependencies.Util.markdown)
 }
