@@ -11,13 +11,13 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
-private val DarkColorScheme = darkColorScheme(
+private val darkColorScheme = darkColorScheme(
     primary = Black,
     onPrimary = White,
     secondary = White40
 )
 
-private val LightColorScheme = lightColorScheme(
+private val lightColorScheme = lightColorScheme(
     primary = White,
     onPrimary = Black,
     secondary = Gray20.copy(alpha = .3f)
@@ -28,7 +28,7 @@ fun AppTheme(
     darkTheme: Boolean,
     content: @Composable () -> Unit
 ) {
-    val colorScheme = if (darkTheme) DarkColorScheme else LightColorScheme
+    val colorScheme = if (darkTheme) darkColorScheme else lightColorScheme
     val view = LocalView.current
     if (!view.isInEditMode) {
         SideEffect {

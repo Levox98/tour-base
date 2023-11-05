@@ -1,19 +1,18 @@
 package ru.tour_base.core_navigation
 
-sealed class BlogNavScreen {
-    abstract val route: String
+sealed class BlogNavScreen : BaseNav() {
 
     data object Root : BlogNavScreen() {
         override val route: String
             get() = "BlogRoot"
     }
 
-    data object Blog : BlogNavScreen() {
+    class Blog(private val blogId: Int? = null) : BlogNavScreen() {
         override val route: String
-            get() = "Blog/{$BLOG_ID}"
+            get() = "Blog/${blogId ?: "{$BLOG_ID}"}"
 
-        fun routeToBlog(blogId: Int) = "Blog/$blogId"
-
-        const val BLOG_ID = "BLOG_ID"
+        companion object {
+            const val BLOG_ID = "BLOG_ID"
+        }
     }
 }

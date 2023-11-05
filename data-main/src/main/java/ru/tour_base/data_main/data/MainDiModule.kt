@@ -15,7 +15,7 @@ object MainDiModule {
 
     @Singleton
     @Provides
-    fun provideMainApiService(retrofit: Retrofit) = retrofit.create(MainApiService::class.java)
+    fun provideMainApiService(retrofit: Retrofit): MainApiService = retrofit.create(MainApiService::class.java)
 
     @Singleton
     @Provides

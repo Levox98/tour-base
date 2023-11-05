@@ -9,12 +9,14 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import ru.tour_base.core_navigation.NavigationManager
 import ru.tour_base.data_main.domain.entity.blog.BlogEntry
 import ru.tour_base.feature_blog.usecase.GetBlogEntryUseCase
 import javax.inject.Inject
 
 @HiltViewModel
 class BlogEntryScreenViewModel @Inject constructor(
+    private val navigationManager: NavigationManager,
     private val getBlogEntryUseCase: GetBlogEntryUseCase
 ) : ViewModel() {
 
@@ -39,6 +41,7 @@ class BlogEntryScreenViewModel @Inject constructor(
     }
 
     fun onNavigateBack() {
+        navigationManager.back()
         blogEntry = null
     }
 }

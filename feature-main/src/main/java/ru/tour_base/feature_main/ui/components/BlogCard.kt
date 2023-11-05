@@ -30,6 +30,7 @@ internal fun BlogCard(
     onClick: () -> Unit
 ) {
     val context = LocalContext.current
+    val picasso = Picasso.Builder(context).build()
 
     Surface(
         modifier = modifier
@@ -40,20 +41,14 @@ internal fun BlogCard(
                 onClick = onClick
             )
     ) {
-        val picasso = Picasso.Builder(context).build()
-        val painter = picasso.rememberPainter(key = imageUrl) {
-            it.load(imageUrl)
-        }
+        Column {
+            val painter = picasso.rememberPainter(key = imageUrl) {
+                it.load(imageUrl)
+            }
 
-        Column(
-            modifier = Modifier,
-
-            ) {
             Image(
                 modifier = Modifier
-                    .clip(MaterialTheme.shapes.small)
-//                    .border(1.dp, MaterialTheme.colorScheme.secondary, MaterialTheme.shapes.small)
-                ,
+                    .clip(MaterialTheme.shapes.small),
                 painter = painter,
                 contentDescription = null
             )

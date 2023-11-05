@@ -6,5 +6,5 @@ import javax.inject.Inject
 class GetBlogEntryUseCase @Inject constructor(
     private val repository: MainRepository
 ) {
-    suspend operator fun invoke(blogId: Int) = repository. getBlogEntry(blogId)
+    suspend operator fun invoke(blogId: Int) = repository.getBlogEntry(blogId)
 }
